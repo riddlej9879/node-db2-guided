@@ -11,7 +11,7 @@ const db = knex({
 
 const router = express.Router()
 
-router.get("/", async (req, res, next) => {
+router.get("/fruits", async (req, res, next) => {
 	try {
 		res.json(await db("fruits"))
 	} catch(err) {
@@ -19,7 +19,7 @@ router.get("/", async (req, res, next) => {
 	}
 })
 
-router.get("/:id", async (req, res, next) => {
+router.get("/fruits/:id", async (req, res, next) => {
 	try {
 		const { id } = req.params
 		const fruit = await db("fruits").where({ id }).first()
@@ -30,7 +30,7 @@ router.get("/:id", async (req, res, next) => {
 	}
 })
 
-router.post("/", async (req, res, next) => {
+router.post("/fruits", async (req, res, next) => {
 	try {
 		const [id] = await db("fruits").insert(req.body)
 		const newFruit = await db("fruits").where({ id }).first()
