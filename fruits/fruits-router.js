@@ -13,9 +13,7 @@ const router = express.Router()
 
 router.get("/", async (req, res, next) => {
 	try {
-		const fruits = await db("fruits")
-		
-		res.json(fruits)
+		res.json(await db("fruits"))
 	} catch(err) {
 		next(err)
 	}
@@ -34,9 +32,8 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
 	try {
-		const fruitData = req.body
-		const [id] = await db("fruits").insert(fruitData)
-		const newFruit = await db("fruits").where({ id })
+		const [id] = await db("fruits").insert(req.body)
+		const newFruit = await db("fruits").where({ id }).first()
 
 		res.status(201).json(newFruit)
 	} catch(err) {
