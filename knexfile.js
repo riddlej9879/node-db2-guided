@@ -1,7 +1,9 @@
+// Update with your config settings.
+
 module.exports = {
-  client: "sqlite3", // specifying the DBMS
-  useNullAsDefault: true, // a flag that is specific to SQLite
+  client: "sqlite3",
+  useNullAsDefault: true,
   connection: {
-    filename: "./data/produce.db3", // location of our database file
+    filename: "./data/produce.db3",
   },
 };
